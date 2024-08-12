@@ -1,7 +1,7 @@
 const axios = require('axios');
 const { NEXT_PUBLIC_HYGRAPH_API_KEY } = require('../../../config');
 
-const MASTER_URL = `https://ap-south-1.cdn.hygraph.com/content/${NEXT_PUBLIC_HYGRAPH_API_KEY}/master`;
+const MASTER_URL = `https://ap-south-1.cdn.hygraph.com/content/${NEXT_PUBLIC_HYGRAPH_API_KEY}/master`
 
 const getAllCourseList = async () => {
   const query = `
@@ -112,22 +112,19 @@ const getCourseById = async (courseId) => {
 const enrollToCourse = async (courseId, email) => {
   const query = `mutation MyMutation {
   createUserEnrollCourse(
-    data: {courseld: "`+ courseId + `", userEmail: "` + email + `"}
+    data: {courseld: "`+ courseId +`", userEmail: "`+ email +`", courseList: {connect: {slug: "`+ courseId +`"}}}
   ) {
-    courseList {
-      slug
-    }
     id
-  }
-    publishManyUserEnrollCoursesConnection{
-    edges{
-      node{
+}
+    publishManyUserEnrollCoursesConnection {
+    edges {
+      node {
         id
       }
-    }
   }
 }
-}`
+}
+`
   try {
     const response = await axios.post(MASTER_URL, {
       query: query

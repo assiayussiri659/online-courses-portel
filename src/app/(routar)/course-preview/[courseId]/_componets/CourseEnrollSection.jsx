@@ -7,7 +7,7 @@ import GlobalApi from '/src/app/_utils/GlobalApi.js'
 
 function CourseEnrollSection({ courseInfo }) {
 
-  const { data: session } = useSession();
+  const { session } = useSession();
 
   const router=useRouter();
 
@@ -24,7 +24,6 @@ function CourseEnrollSection({ courseInfo }) {
   }
 
   const membership = false;
-  console.log('courseinfo',courseInfo)
   return (
     <div className='p-3 text-center rounded-sm bg-primary flex flex-col gap-3'>
       <h2 className='text-[22px] font-bold text-white'>Enroll to the Course</h2>
@@ -32,7 +31,7 @@ function CourseEnrollSection({ courseInfo }) {
 
 
       {/* User has Membership and Alredy Login */}
-      {session && (membership || courseInfo?.free) ?
+      { session && (membership || courseInfo.free) ?
 
        <div className='flex flex-col gap-3 mt-3'>
         <h2 className='text-white font-light'>Enrool Now to Start Learning and Building the project</h2>
@@ -41,7 +40,7 @@ function CourseEnrollSection({ courseInfo }) {
         >Enroll Now</Button>
       </div>
 
-        : !session ?
+        :!session ?
           <div className='flex flex-col gap-3 mt-3'>
             <h2 className='text-white font-light'>Enrool Now to Start Learning and Building the project</h2>
             <Link href={'/Signup'}>
@@ -49,10 +48,10 @@ function CourseEnrollSection({ courseInfo }) {
             </Link>
           </div>
 
-          : <div className='flex flex-col gap-3 mt-3'>
+          :
+         <div className='flex flex-col gap-3 mt-3'>
             <h2 className='text-white font-light'>By Monthly membership anh Get Access to All Course</h2>
             <Button className='bg-white text-primary hover:bg-white hover:text-primary'>By membership Just $1.99</Button>
-
           </div>}
       {/* About Section User Does not Have Membership or not Signup/Login */}
     </div>

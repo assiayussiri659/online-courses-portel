@@ -17,14 +17,6 @@ function CourseList() {
 
   const { data: session, status } = useSession();
   const router = useRouter();
-
-  // useEffect(() => {
-  //   if (status === "unauthenticated") {
-  //     router.push("/");
-  //   }
-  // }, [status, router]);
-
-
   const [courseList, setCorurseList] = useState([])
   useEffect(() => {
     getAllCourses();

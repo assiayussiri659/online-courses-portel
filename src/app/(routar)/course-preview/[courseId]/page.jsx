@@ -5,19 +5,19 @@ import CourseVideoDescription from './_componets/CourseVideoDescription'
 import GlobalApi from '@/app/_utils/GlobalApi'
 import CourseEnrollSection from './_componets/CourseEnrollSection'
 import CourseContentSection from './_componets/CourseContentSection'
-import { useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
+// import { useSession } from "next-auth/react";
+// import { useRouter } from "next/navigation";
 
 
 function CoursePreview({ params }) {
-  const { data: session, status } = useSession();
-  const router = useRouter();
+  // const { data: session, status } = useSession();
+  // const router = useRouter();
 
-  useEffect(() => {
-    if (status === "unauthenticated") {
-      router.push("/");
-    }
-  }, [status, router]);
+  // useEffect(() => {
+  //   if (status === "unauthenticated") {
+  //     router.push("/");
+  //   }
+  // }, [status, router]);
 
   const [courseInfo, setCourseInfo] = useState();
   useEffect(() => {
