@@ -20,6 +20,7 @@ function CoursePreview({ params }) {
   // }, [status, router]);
 
   const [courseInfo, setCourseInfo] = useState();
+  const [isUserAlreadyEnrolled,setIsUserAlreadyEnrolled]=useState(false);
   useEffect(() => {
     params && getCourseInfoById();
   }, [params])
@@ -29,8 +30,27 @@ function CoursePreview({ params }) {
   const getCourseInfoById = () => {
     GlobalApi.getCourseById(params?.courseId).then(resp => {
       setCourseInfo(resp?.data.courseList)
+      resp?.courseList&&checkUserEnrolledToCourse();
     })
   }
+
+
+  // to check user already enrolled to course
+
+  const checkUserEnrolledToCourse=()=>{
+    GlobalApi.checkUserEnrolledToCourse(courseInfo.slug,user.primaryEmailAddress.emailAddress)
+    .then(resp=>{
+      if(resp.userEnrollCourses?.id){
+        setIsUserAlreadyEnrolled(true);
+      }
+    })
+  }
+
+
+
+
+
+  console.log("courseInfo:::: ", courseInfo)
   return (
     <div className='grid grid-cols-1 md:grid-cols-3 p-5 gap-3'>
       {/* Video Titel Description */}
@@ -45,7 +65,10 @@ function CoursePreview({ params }) {
 
 
       <div>
-        <CourseEnrollSection courseInfo={courseInfo} />
+        <CourseEnrollSection courseInfo={courseInfo} 
+        isUserAlreadyEnrolled={isUserAlreadyEnrolled}
+        />
+        <CourseContentSection courseInfo={courseInfo} />
       </div>
     </div>
   )

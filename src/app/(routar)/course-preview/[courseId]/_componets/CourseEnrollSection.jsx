@@ -1,15 +1,19 @@
 import { Button } from '@/components/ui/button'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useSession } from "next-auth/react";
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import GlobalApi from '/src/app/_utils/GlobalApi.js'
 
-function CourseEnrollSection({ courseInfo }) {
+function CourseEnrollSection({ courseInfo, isUserAlreadyEnrolled }) {
 
   const { session } = useSession();
 
   const router=useRouter();
+
+  useEffect(()=>{
+    console.log("isUserAlreadyEnrolled", isUserAlreadyEnrolled)
+  },[])
 
   const onEnrollCourse=()=>{
         GlobalApi.enrollToCourse(courseInfo?.slug, session?.primaryEmailAddress?.emailAddress).then(resp=>{
@@ -44,7 +48,7 @@ function CourseEnrollSection({ courseInfo }) {
           <div className='flex flex-col gap-3 mt-3'>
             <h2 className='text-white font-light'>Enrool Now to Start Learning and Building the project</h2>
             <Link href={'/Signup'}>
-              <Button className='bg-white text-primary hover:bg-white hover:text-primary' >Enroll Now</Button>
+              <Button className='bg-white text-primary hover:bg-white hover:text-primary'>Enroll Now</Button>
             </Link>
           </div>
 
