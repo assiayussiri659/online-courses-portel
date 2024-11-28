@@ -29,6 +29,8 @@ function CourseEnrollSection({ courseInfo, isUserAlreadyEnrolled }) {
 
   const membership = false;
   return (
+
+    
     <div className='p-3 text-center rounded-sm bg-primary flex flex-col gap-3'>
       <h2 className='text-[22px] font-bold text-white'>Enroll to the Course</h2>
 
