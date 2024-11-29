@@ -65,4 +65,6 @@ function CourseEnrollSection({ courseInfo, isUserAlreadyEnrolled }) {
   )
 }
 
+//in this 
+
 export default CourseEnrollSection
