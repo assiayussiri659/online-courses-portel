@@ -66,5 +66,6 @@ function CourseEnrollSection({ courseInfo, isUserAlreadyEnrolled }) {
 }
 
 //in this 
+//that is our find membership
 
 export default CourseEnrollSection
